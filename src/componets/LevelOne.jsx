@@ -5,7 +5,7 @@ function LevelOne({ isVisible }) {
   return (
     <div
       className={`h-full
-             bg-indigo-700 ${
+             bg-green-700 ${
                isVisible ? "visible" : "hidden"
              } flex items-center justify-center flex-col gap-5`}
     >
