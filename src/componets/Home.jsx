@@ -15,18 +15,20 @@ const Home = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // ✅ हर बार जब route बदले, उसे localStorage में save करो
   useEffect(() => {
-    // जब भी location change हो, तो current path localStorage में सेव करो
     localStorage.setItem("lastPath", location.pathname + location.search);
   }, [location]);
 
+  // ✅ अगर user "/" पर आया है और कोई lastPath stored है, तो redirect कर दो
   useEffect(() => {
-    // पेज लोड होने पर देखो क्या lastPath स्टोर है
     const lastPath = localStorage.getItem("lastPath");
-    if (lastPath && lastPath !== location.pathname + location.search) {
+
+    if (location.pathname === "/" && lastPath && lastPath !== "/") {
       navigate(lastPath, { replace: true });
     }
   }, []);
+
   return (
     <>
       <div className="border-50 rounded-4xl border-gray-600 mt-0 mr-0 ml-0 mb-20  bg-black relative h-screen">
