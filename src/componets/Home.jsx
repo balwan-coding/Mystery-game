@@ -1,7 +1,7 @@
 import FristIntro from "./FristIntro";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiRadioButtonLine } from "react-icons/ri";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import LevelOne from "./LevelOne";
 
 const Home = () => {
@@ -11,9 +11,25 @@ const Home = () => {
     setColor(!color);
     setIsVisible(!isVisible);
   };
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // जब भी location change हो, तो current path localStorage में सेव करो
+    localStorage.setItem("lastPath", location.pathname + location.search);
+  }, [location]);
+
+  useEffect(() => {
+    // पेज लोड होने पर देखो क्या lastPath स्टोर है
+    const lastPath = localStorage.getItem("lastPath");
+    if (lastPath && lastPath !== location.pathname + location.search) {
+      navigate(lastPath, { replace: true });
+    }
+  }, []);
   return (
     <>
-      <div className="border-50 rounded-4xl border-gray-600 mt-0 mr-20 ml-20 mb-20  bg-black relative h-screen">
+      <div className="border-50 rounded-4xl border-gray-600 mt-0 mr-0 ml-0 mb-20  bg-black relative h-screen">
         <Routes>
           <Route index element={<FristIntro isVisible={isVisible} />}></Route>
           <Route
