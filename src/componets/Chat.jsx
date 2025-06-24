@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Result from "./Result";
 
 function Chat({ qustion, inputChange, btnClick, enterBtnClick, result }) {
   return (
-    // AIzaSyC2NT2R8rDqRJCwLPEHSlQPQiuHpPdB790
     <div className="col-span-4 p-10">
-      <div className="container h-3/5 overflow-auto ">
-        <div className="text-white">
+      <div className="container h-120 overflow-auto ">
+        <div className="text-zinc-300">
           <ul>
-            {result && result.map((item, index) => <li key={index}>{item}</li>)}
+            {result &&
+              result.map((item, index) => (
+                <li key={index}>
+                  <Result
+                    index={index}
+                    ans={item}
+                    totalResult={result.length}
+                  />
+                </li>
+              ))}
           </ul>
         </div>
       </div>
