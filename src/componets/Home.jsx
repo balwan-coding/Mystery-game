@@ -5,7 +5,7 @@ import { URL } from "../data/Url";
 
 function Home() {
   const [qustion, setQustion] = useState("");
-  const [showResult, setShowResut] = useState(undefined);
+  const [showResult, setShowResut] = useState([]);
 
   const handleOnChange = (event) => {
     setQustion(event.target.value);
@@ -32,7 +32,11 @@ function Home() {
     let responseResult = response.candidates[0].content.parts[0].text;
     responseResult = responseResult.split("* ");
     responseResult = responseResult.map((item) => item.trim());
-    setShowResut(responseResult);
+    setShowResut([
+      ...showResult,
+      { type: "q", text: qustion },
+      { type: "a", text: responseResult },
+    ]);
   };
 
   const handleOnKeyDown = (event) => {

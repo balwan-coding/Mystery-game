@@ -7,16 +7,41 @@ function Chat({ qustion, inputChange, btnClick, enterBtnClick, result }) {
       <div className="container h-120 overflow-auto ">
         <div className="text-zinc-300">
           <ul>
-            {result &&
-              result.map((item, index) => (
-                <li key={index}>
-                  <Result
-                    index={index}
-                    ans={item}
-                    totalResult={result.length}
-                  />
+            {/* {result.map((item, index) =>
+              item.type === "q" ? (
+                <li key={index + Math.random()}>
+                  <Result index={index} ans={item.text} totalResult={1} />
                 </li>
-              ))}
+              ) : (
+                item.text.map((ansItme, ansIndex) => {
+                  <li key={ansIndex + Math.random()}>
+                    <Result
+                      index={ansIndex}
+                      ans={ansItme}
+                      totalResult={item.length}
+                    />
+                  </li>;
+                })
+              )
+            )} */}
+
+            {result.map((item, index) =>
+              item.type === "q" ? (
+                <li key={index + Math.random()}>
+                  <Result index={index} ans={item.text} totalResult={1} />
+                </li>
+              ) : (
+                item.text.map((ansItem, ansIndex) => (
+                  <li key={ansIndex + Math.random()}>
+                    <Result
+                      index={ansIndex}
+                      ans={ansItem}
+                      totalResult={item.text.length}
+                    />
+                  </li>
+                ))
+              )
+            )}
           </ul>
         </div>
       </div>
