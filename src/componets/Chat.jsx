@@ -4,44 +4,40 @@ import Result from "./Result";
 function Chat({ qustion, inputChange, btnClick, enterBtnClick, result }) {
   return (
     <div className="col-span-4 p-10">
-      <div className="container h-120 overflow-auto ">
+      <div className="container h-130 overflow-auto ">
         <div className="text-zinc-300">
           <ul>
-            {/* {result.map((item, index) =>
-              item.type === "q" ? (
-                <li key={index + Math.random()}>
-                  <Result index={index} ans={item.text} totalResult={1} />
-                </li>
-              ) : (
-                item.text.map((ansItme, ansIndex) => {
-                  <li key={ansIndex + Math.random()}>
+            {result.map((item, index) => (
+              <div
+                key={index + Math.random()}
+                className={item.type === "q" ? "flex justify-end" : ""}
+              >
+                {item.type === "q" ? (
+                  <li
+                    className="p-2 mb-3 text-right text-white text-lg mr-2 border-2 border-zinc-600 bg-zinc-600 w-fit rounded-tr-4xl rounded-bl-4xl"
+                    key={index + Math.random()}
+                  >
                     <Result
-                      index={ansIndex}
-                      ans={ansItme}
-                      totalResult={item.length}
-                    />
-                  </li>;
-                })
-              )
-            )} */}
-
-            {result.map((item, index) =>
-              item.type === "q" ? (
-                <li key={index + Math.random()}>
-                  <Result index={index} ans={item.text} totalResult={1} />
-                </li>
-              ) : (
-                item.text.map((ansItem, ansIndex) => (
-                  <li key={ansIndex + Math.random()}>
-                    <Result
-                      index={ansIndex}
-                      ans={ansItem}
-                      totalResult={item.text.length}
+                      index={index}
+                      ans={item.text}
+                      totalResult={1}
+                      type={item.type}
                     />
                   </li>
-                ))
-              )
-            )}
+                ) : (
+                  item.text.map((ansItem, ansIndex) => (
+                    <li className="p-1" key={ansIndex + Math.random()}>
+                      <Result
+                        type={item.type}
+                        index={ansIndex}
+                        ans={ansItem}
+                        totalResult={item.text.length}
+                      />
+                    </li>
+                  ))
+                )}
+              </div>
+            ))}
           </ul>
         </div>
       </div>

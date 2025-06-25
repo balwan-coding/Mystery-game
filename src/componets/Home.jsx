@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Silder from "./Silder";
 import Chat from "./Chat";
 import { URL } from "../data/Url";
+import Alert from "./Alert";
 
 function Home() {
   const [qustion, setQustion] = useState("");
   const [showResult, setShowResut] = useState([]);
+  const [resentHistory, setResentHistory] = useState("MAYA IS COME ON TO");
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleOnChange = (event) => {
     setQustion(event.target.value);
@@ -23,6 +26,13 @@ function Home() {
     ],
   };
   const askQustion = async () => {
+    if (qustion.length === 0) {
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3 * 1000);
+      return;
+    }
     let response = await fetch(URL, {
       method: "POST",
       body: JSON.stringify(paylode),
@@ -46,8 +56,8 @@ function Home() {
   };
   return (
     <div className="h-screen bg-zinc-800">
-      <div className="grid grid-cols-5  ">
-        <Silder />
+      <div className="grid grid-cols-5 relative  ">
+        <Silder history={resentHistory} />
         <Chat
           qustion={qustion}
           inputChange={handleOnChange}
@@ -55,6 +65,7 @@ function Home() {
           enterBtnClick={handleOnKeyDown}
           result={showResult}
         />
+        {showAlert && <Alert message={"please enter some content"} />}
       </div>
     </div>
   );

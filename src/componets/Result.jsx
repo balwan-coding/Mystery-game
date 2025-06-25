@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Result({ ans, index, totalResult }) {
+function Result({ ans, index, totalResult, type }) {
   const [heading, setHeading] = useState(false);
   const [answer, setAnswer] = useState(ans);
 
@@ -28,7 +28,9 @@ function Result({ ans, index, totalResult }) {
           {answer}
         </span>
       ) : (
-        <span className="pl-5 block">{answer}</span>
+        <span className={`${type === "q" ? "p-1" : "p-5"} block`}>
+          {answer}
+        </span>
       )}
     </>
   );
