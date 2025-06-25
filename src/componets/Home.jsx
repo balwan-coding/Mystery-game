@@ -10,10 +10,6 @@ function Home() {
   const [resentHistory, setResentHistory] = useState("MAYA IS COME ON TO");
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleOnChange = (event) => {
-    setQustion(event.target.value);
-  };
-
   const paylode = {
     contents: [
       {
@@ -25,7 +21,8 @@ function Home() {
       },
     ],
   };
-  const askQustion = async () => {
+
+  const hnandleShowAlert = () => {
     if (qustion.length === 0) {
       setShowAlert(true);
       setTimeout(() => {
@@ -33,6 +30,14 @@ function Home() {
       }, 3 * 1000);
       return;
     }
+  };
+
+  const handleOnChange = (event) => {
+    setQustion(event.target.value);
+  };
+
+  const askQustion = async () => {
+    hnandleShowAlert();
     let response = await fetch(URL, {
       method: "POST",
       body: JSON.stringify(paylode),
