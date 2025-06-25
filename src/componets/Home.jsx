@@ -23,13 +23,10 @@ function Home() {
   };
 
   const hnandleShowAlert = () => {
-    if (qustion.length === 0) {
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3 * 1000);
-      return;
-    }
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3 * 1000);
   };
 
   const handleOnChange = (event) => {
@@ -37,7 +34,10 @@ function Home() {
   };
 
   const askQustion = async () => {
-    hnandleShowAlert();
+    if (qustion.length === 0) {
+      hnandleShowAlert();
+      return;
+    }
     let response = await fetch(URL, {
       method: "POST",
       body: JSON.stringify(paylode),
