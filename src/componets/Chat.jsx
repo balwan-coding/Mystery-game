@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Result from "./Result";
 
-function Chat({ qustion, inputChange, btnClick, enterBtnClick, result }) {
+function Chat({ inputRef, btnClick, enterBtnClick, result }) {
   return (
     <div className="col-span-4 p-10">
       <div className="container h-130 overflow-auto ">
@@ -46,11 +46,12 @@ function Chat({ qustion, inputChange, btnClick, enterBtnClick, result }) {
           type="text"
           placeholder="ASK ME ANYTHINK"
           className="w-full h-full p-3 outline-none"
-          value={qustion}
-          onChange={inputChange}
+          ref={inputRef}
           onKeyDown={enterBtnClick}
         />
-        <button onClick={btnClick}>ASK</button>
+        <button className="cursor-pointer" onClick={btnClick}>
+          ASK
+        </button>
       </div>
     </div>
   );
