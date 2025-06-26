@@ -7,7 +7,9 @@ import Alert from "./Alert";
 function Home() {
   const [qustion, setQustion] = useState("");
   const [showResult, setShowResut] = useState([]);
-  const [resentHistory, setResentHistory] = useState("MAYA IS COME ON TO");
+  const [resentHistory, setResentHistory] = useState(
+    JSON.parse(localStorage.getItem("history"))
+  );
   const [showAlert, setShowAlert] = useState(false);
 
   const paylode = {
@@ -37,6 +39,16 @@ function Home() {
     if (qustion.length === 0) {
       hnandleShowAlert();
       return;
+    }
+
+    if (localStorage.getItem("history")) {
+      let history = JSON.parse(localStorage.getItem("history"));
+      history = [qustion, ...history];
+      localStorage.setItem("history", JSON.stringify(history));
+      setResentHistory(history);
+    } else {
+      localStorage.setItem("history", JSON.stringify([qustion]));
+      setResentHistory([qustion]);
     }
     let response = await fetch(URL, {
       method: "POST",
