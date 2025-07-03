@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
 
 function Silder({ history, setHistory, setSelectHistory }) {
-  console.log(history);
+  const [isColor, setIsColor] = useState(null);
   return (
     <div className="h-screen col-span-1 bg-zinc-700">
       <div className="flex p-3 justify-between">
@@ -22,9 +22,14 @@ function Silder({ history, setHistory, setSelectHistory }) {
             <li
               onClick={() => {
                 setSelectHistory(item);
+                setIsColor(index);
               }}
               key={index}
-              className="text-zinc-300 p-2 truncate hover:bg-zinc-500 hover:text-zinc-200 "
+              className={`${
+                isColor === index
+                  ? "bg-blue-600 text-black font-bold hover:bg-blue-700"
+                  : "text-zinc-300  hover:bg-zinc-500 hover:text-zinc-200"
+              }  cursor-pointer p-2 truncate  `}
             >
               {item}
             </li>

@@ -5,7 +5,7 @@ import { URL } from "../data/Url";
 import Alert from "./Alert";
 
 function Home() {
-  const inputRef = useRef();
+  const inputRef = useRef("");
   const [showResult, setShowResut] = useState([]);
   const [resentHistory, setResentHistory] = useState(
     JSON.parse(localStorage.getItem("history"))
@@ -22,27 +22,31 @@ function Home() {
 
   const askQustion = async () => {
     const questionText = inputRef.current.value.trim();
-    if (questionText.length === 0) {
+    if (!questionText && !selectHistory) {
       hnandleShowAlert();
       return;
     }
 
-    if (localStorage.getItem("history")) {
-      let history = JSON.parse(localStorage.getItem("history"));
-      history = [questionText, ...history];
-      localStorage.setItem("history", JSON.stringify(history));
-      setResentHistory(history);
-    } else {
-      localStorage.setItem("history", JSON.stringify([questionText]));
-      setResentHistory([questionText]);
+    if (questionText) {
+      if (localStorage.getItem("history")) {
+        let history = JSON.parse(localStorage.getItem("history"));
+        history = [questionText, ...history];
+        localStorage.setItem("history", JSON.stringify(history));
+        setResentHistory(history);
+      } else {
+        localStorage.setItem("history", JSON.stringify([questionText]));
+        setResentHistory([questionText]);
+      }
     }
+
+    const paylodeData = questionText ? questionText : selectHistory;
 
     const paylode = {
       contents: [
         {
           parts: [
             {
-              text: questionText,
+              text: paylodeData,
             },
           ],
         },
@@ -60,10 +64,11 @@ function Home() {
     responseResult = responseResult.map((item) => item.trim());
     setShowResut([
       ...showResult,
-      { type: "q", text: questionText },
+      { type: "q", text: questionText ? questionText : selectHistory },
       { type: "a", text: responseResult },
     ]);
-    setQustion("");
+
+    inputRef.current.value = "";
   };
 
   const handleOnKeyDown = (event) => {
@@ -73,8 +78,13 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log(selectHistory);
+    if (!selectHistory) {
+      return;
+    } else {
+      askQustion();
+    }
   }, [selectHistory]);
+
   return (
     <div className="h-screen bg-zinc-800">
       <div className="grid grid-cols-5 relative  ">
