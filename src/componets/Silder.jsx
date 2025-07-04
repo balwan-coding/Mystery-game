@@ -27,9 +27,9 @@ function Silder({ history, setHistory, setSelectHistory }) {
               key={index}
               className={`${
                 isColor === index
-                  ? "bg-blue-600 text-black font-bold hover:bg-blue-700"
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "text-zinc-300  hover:bg-zinc-500 hover:text-zinc-200"
-              }  cursor-pointer p-2 truncate  `}
+              }  cursor-pointer p-2 truncate font-semibold first-letter:uppercase`}
             >
               {item}
             </li>
