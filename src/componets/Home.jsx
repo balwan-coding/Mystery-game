@@ -12,6 +12,7 @@ function Home() {
   );
   const [showAlert, setShowAlert] = useState(false);
   const [selectHistory, setSelectHistory] = useState("");
+  const [isloding, setIsLoding] = useState(false);
 
   const hnandleShowAlert = () => {
     setShowAlert(true);
@@ -38,6 +39,8 @@ function Home() {
         setResentHistory([questionText]);
       }
     }
+
+    setIsLoding(true);
 
     const paylodeData = questionText ? questionText : selectHistory;
 
@@ -69,6 +72,7 @@ function Home() {
     ]);
 
     inputRef.current.value = "";
+    setIsLoding(false);
   };
 
   const handleOnKeyDown = (event) => {
@@ -86,7 +90,10 @@ function Home() {
   }, [selectHistory]);
 
   return (
-    <div className="h-screen bg-zinc-800">
+    <div
+      className="h-screen
+     bg-zinc-800"
+    >
       <div className="grid grid-cols-5 relative  ">
         <Silder
           history={resentHistory}
@@ -98,6 +105,7 @@ function Home() {
           btnClick={askQustion}
           enterBtnClick={handleOnKeyDown}
           result={showResult}
+          isLoade={isloding}
         />
         {showAlert && <Alert message={"please enter some content"} />}
       </div>
