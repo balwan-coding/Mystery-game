@@ -1,12 +1,26 @@
-# React + Vite
+# AI Powered Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an AI-powered web application built using **React.js**, created by **Balwan Singh Rajput**.
 
-Currently, two official plugins are available:
+The application is inspired by various AI tools and concepts to provide a smart, fast, and modern user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Technologies Used
 
-## Expanding the ESLint configuration
+- React.js (Frontend Framework)
+- Tailwind CSS (Styling)
+- AI concepts and UI inspired by modern AI tools
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🌟 Features
+
+- Clean and responsive UI
+- Fast performance
+- Inspired by real-world AI tools
+- Built using modern web technologies
+
+## 👨‍💻 Developed By
+
+**Balwan Singh Rajput**
+
+---
+
+Feel free to explore, use, or contribute to this project!
