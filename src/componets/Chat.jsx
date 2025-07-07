@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import Result from "./Result";
+import React from "react";
 import Loding from "./Loding";
-import QusAns from "./qusAns";
+import QusAns from "./QusAns";
 
 function Chat({ inputRef, isLoade, btnClick, enterBtnClick, result }) {
   return (
